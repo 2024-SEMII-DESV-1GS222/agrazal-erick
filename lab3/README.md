@@ -36,8 +36,7 @@ Este documento HTML representa una página web interactiva que demuestra concept
 
 ### Cuerpo (Body)
 
-```
-html
+```html
 <body>
 <main>
 <!-- Contenido principal aquí -->
@@ -53,8 +52,7 @@ html
 
 #### Contenido Principal
 
-```
-html
+```html
 <main>
 <section>
 <fieldset>
@@ -108,7 +106,7 @@ El código JavaScript utiliza el patrón de módulo para organizar la funcionali
 
 ### Módulo Utils
 
-```avascript
+```javascript
 const Utils = (() => {
 // Funciones de utilidad aquí
 })();
