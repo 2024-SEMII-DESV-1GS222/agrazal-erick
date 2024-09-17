@@ -3,32 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laboratorio #2</title>
+  <title>Laboratorio</title>
 </head>
 <body>
-  <!-- Mostrar textos -->
-  <h1>
-    Hola mundo
-  </h1>
-  <h2>
-    Hola mundo
-  </h2>
-  <h3>
-    Hola mundo
-  </h3>
-  <h4>
-    Hola mundo
-  </h4>
-  <h5>
-    Hola mundo
-  </h5>
-  <h6>
-    Hola mundo
-  </h6>
-  <hr>
-  <span><strong>Hola</strong></span>
-  <span>Mundo</span>
-  <p>Hola</p><p>Ejemplo</p>
-  <p>Mundo</p>
+  <!-- Problema #1 -->
+  <h1>Definir JS y cuál es la diferencia con Java</h1>
+  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero magnam deleniti eveniet. Possimus, quam velit repellendus hic magni nisi deleniti sequi quidem, soluta quae, consectetur sed nemo enim esse nam!</p>
 </body>
+<script>
+  // Problema #2
+  var a = 20, b = 10;
+  console.log(a + b);
+
+  // Problema #3
+  let nombre = "Hello", apellido ="World";
+  console.log(`${nombre} ${apellido}`);
+
+  // Problema #4
+  const numero = 10, cadena = "Anllelina";
+  console.log(`El tipo de dato de número es: ${typeof numero}, y el tipo de dato de cadena es: ${typeof cadena}`);
+
+  // Problema # 5
+  const obj = {
+    num: 10,
+    text: "Nombre",
+    bool: true,
+    obj: {},
+  }
+  const key = 'obj';
+  console.log(obj.num);
+  console.log(obj.text);
+  console.log(obj['bool']);
+  console.log(obj[key]);
+
+  // Problema # 6
+  const fn = (n) => n % 3 === 0 || n % 5 === 0 ? n : 0;
+  let acc = 0;
+  for (let i = 0 ; i < 10; i++) {
+    acc += fn(i);
+  }
+  console.log(acc);
+</script>
+<script>
+  // (() => {
+  //   // Variable hoisting
+  //   console.log(d);
+  //   var c = true;
+  //   if (c === true) {
+  //     var d = 30;
+  //   }
+  //   console.log(d);
+  // })();
+  // console.log(d); 
+</script>
+<script>
+  (() => {
+    const flag = true;
+    const i = [];
+    if (flag === true) {
+      const n = "Lucciana";
+      i.push('Hello');
+    }
+    console.log(i);
+    i[0] = "Anllelina";
+    console.log(i)
+  })();
+</script>
 </html>
