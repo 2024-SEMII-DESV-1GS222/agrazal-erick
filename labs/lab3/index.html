@@ -6,18 +6,32 @@
   <title>Document</title>
   <style>
     body {
-      background-color: black;
       color: white;
+      background-color: black;
       display: flex;
       justify-content: center;
+      align-items: center;
+      height: 90vh;
+      width: 100vw;
     }
     main {
-      width: 50vw;
-      height: 100vh;
+      width: 70vw;
+    }
+    fieldset {
+      border-radius: 5px;
+    }
+    div, button {
+      width: 100%;
+    }
+    form {
       display: flex;
-      justify-content: center;
       flex-direction: column;
-      align-items: center;
+      gap: 1.3rem;
+    }
+
+    form > div {
+      display: flex;
+      flex-direction: column;
       gap: 0.5rem;
     }
   </style>
@@ -27,83 +41,93 @@
     <section>
       <fieldset>
         <form>
-          <label for="numero">
-            Número:
-          </label>
-          <input id="cadena" type="text" name="numero">
-          <button>Enviar</button>
+          <div>
+            <label>Cadena: </label>
+            <input type="text" id="problema-1-cadena" name="cadena" required>
+          </div>
+          <button>Número:</button>
         </form>
+        <div id="response1"></div>
       </fieldset>
     </section>
     <section>
       <fieldset>
-        <form id="problema-2">
-          <label for="cadena">
-            Cadena:
-          </label>
-          <input type="text" name="cadena">
-          <button>Enviar</button>
+        <form id="form2">
+          <div>
+            <label>Cadena: </label>
+            <input type="text" id="cadena2" name="cadena2" required>
+          </div>
+          <button>Calcular</button>
         </form>
+        <div id="response2"></div>
       </fieldset>
     </section>
-    <div id="response"></div>
   </main>
-  <script>
-    const Utils = (() => {
-      const isPalindrome = (n) => {
-        return String(n) === String(n).split('').reverse().join('');
-      };
-      return {
-        isPalindrome,
-        isDoubleBasePalindrome(n) {
-          const decimal = n.toString(10);
-          const binary = n.toString(2);
-          return isPalindrome(decimal) && isPalindrome(binary);
-        },
-        charactecCount(c) {
-          const response = {};
-          c.split('').forEach(e => {
-            response[e] = response[e] ? response[e] + 1 : 1;
-          });
-          return response;
-        }
-      }
-    })();
-    const App = (({ charactecCount, isDoubleBasePalindrome }) => {
-        const htmlElements = {
-          form: document.querySelector('form'),
-          problema2: document.querySelector('#problema-2'),
-          input: document.querySelector('#cadena'),
-          response: document.querySelector('#response'),
-        }
+<script>
+  const Utils = (() => {
+    const isPalindrome = (n) => {
+      return String(n) === String(n).split('').reverse().join('');
+    }
 
-        const handlers = {
-          onFormSubmit(e) {
-            e.preventDefault();
-            const cadena = htmlElements.input.value;
-            const success = isDoubleBasePalindrome(Number(cadena));
-            const responseText = `<div><span style="color: red">La cadena introducida ${success ? 'es doblemente palíndromo.' : 'no es doblemente palíndromo.'}</span></div>`;
-            htmlElements.response.innerHTML += responseText;
-          },
-          onProblema2Submit(e) {
-            e.preventDefault();
-            const cadena = e.target.elements.cadena.value;
-            const responseText = `<div><span style="color: green">La cantidad de caracteres es: ${JSON.stringify(charactecCount(cadena))}</span></div>`;
-            htmlElements.response.innerHTML += responseText;
-          }
-        }
-        const bindEvents = () => {
-          htmlElements.form.addEventListener('submit', handlers.onFormSubmit)
-          htmlElements.problema2.addEventListener('submit', handlers.onProblema2Submit)
-        };
-        return {
-          htmlElements,
-          init() {
-            bindEvents();
-          },
-        }
-    })(Utils);
-    App.init();
-  </script>
+    return {
+      isDoubleBasePalindrome(n) {
+        const decimal = Number(n).toString(10);
+        const binary = Number(n).toString(2);
+        return isPalindrome(decimal) && isPalindrome(binary);
+      },
+      characterCount(c) {
+        const counter = {};
+        String(c).split('').forEach((_c) => {
+          counter[_c] = counter[_c] ? counter[_c] + 1 : 1;
+        })
+        return counter;
+      }
+    }
+  })();
+  const App = (({ characterCount, isDoubleBasePalindrome }) => {
+    const htmlElements = {
+      // Problema #1
+      cadena: document.querySelector('#problema-1-cadena'),
+      form: document.querySelector('form'),
+      response: document.querySelector('#response1'),
+
+      // Problema #2
+      form2: document.querySelector('#form2'),
+      response2: document.querySelector('#response2'),
+    };
+
+    const handlers = {
+      onFormSubmit(e) {
+        e.preventDefault();
+        const cadena = htmlElements.cadena.value;
+        const isValid = isDoubleBasePalindrome(cadena);
+        const color = isValid ? 'green' : 'red';
+        // htmlElements.response.textContent = `La cadena ${isValid ? 'es' : 'no es'} doblemente palindromo.`;
+        htmlElements.response.innerHTML = `<span style="color: ${color}">La cadena ${isValid ? 'es' : 'no es'} doblemente palindromo.</span>`;
+      },
+      onFormSubmit2(e) {
+        e.preventDefault();
+        const cadena = e.target.elements.cadena2.value;
+        const counter = characterCount(cadena);
+        htmlElements.response2.innerHTML = `<ol>${Object.keys(counter).map(c => {
+          return `<li>Caracter: ${c} | Cantidad: ${counter[c]}</li>`;
+        }).join('')}</ol>`;
+      }
+    }
+
+    const bindEvents = () => {
+      htmlElements.form.addEventListener('submit', handlers.onFormSubmit);
+      htmlElements.form2.addEventListener('submit', handlers.onFormSubmit2);
+    }
+  
+    return {
+      init() {
+        bindEvents();
+      },
+    };
+  })(Utils);
+  console.log(Object.keys(App));
+  App.init();
+</script>
 </body>
 </html>

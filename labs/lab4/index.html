@@ -5,67 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Laboratorio #4</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
-  </style>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
       background-color: black;
       color: white;
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-style: normal;
-      padding: 1rem;
     }
     section {
-      background-color: gray;
-      color: black;
-      padding: 2rem;
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      height: 40vh;
-      border: 1px solid beige;
+      background-color: brown;
     }
-    /* .response {
-      background-color: beige;
+    .response-wrapper {
+      background-color: cadetblue;
     }
-    .response2 {
-      background-color: rebeccapurple;
+    #response-wrapper.response-wrapper.response-wrapper2 {
+      background-color: darkmagenta;
     }
-    .response.response2 {
-      background-color: navy;
+    #response-wrapper {
+      background-color: rgb(31, 36, 24);
     }
-    #form {
-      background-color: blueviolet;
-    }
-    section {
-      background-color: grey;
-    } */
   </style>
 </head>
 <body>
-  <main>
-    <section id="form" class="response">
-      <form>
-        <label for="">Cadena</label>
-        <input name="cadena" type="text" placeholder="Introduzca una cadena">
-        <select name="color">
-          <option value="red">Rojo</option>
-          <option value="blue">Azul</option>
-          <option value="orange">Naranja</option>
-          <option value="pink">Rosado</option>
-        </select>
-      </form>
-    </section>
-    <section class="response response2">
-      <div id="result"></div>
-    </section>
-  </main>
-  <script src="../utils.js"></script>
-  <script src="app.js"></script>
+ <main>
+  <section>
+    <form>
+      <label for="cadena">Cadena:</label>
+      <input type="text" name="cadena">
+      <select name="" id="">
+        <option value="">Negro</option>
+        <option value="">Azul</option>
+        <option value="">Gris</option>
+      </select>
+    </form>
+  </section>
+  <section class="response-wrapper response-wrapper2">
+    <div id="response"></div>
+  </section>
+ </main>
+ <script src="../utils.js"></script>
+ <script src="js/app.js"></script>
 </body>
 </html>
